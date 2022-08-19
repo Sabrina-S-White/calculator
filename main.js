@@ -1,9 +1,11 @@
-let add = document.getElementById('add');
-let subtract = document.getElementById('subtract');
-let multiple = document.getElementById('multiple');
-let divide = document.getElementById('divide');
+let add = document.getElementById('+');
+let subtract = document.getElementById('-');
+let multiple = document.getElementById('*');
+let divide = document.getElementById('/');
 
 const buttons = document.querySelectorAll('.btn');
+
+let displayValue = ''
 
 function addition(num1, num2) {
     if ((num1 == parseInt(num1)) && (num2 == parseInt(num2))) {
@@ -27,8 +29,29 @@ function division(num1, num2) {
     return result;
 };
 
+function operate(operator, num1, num2) {
+    if (operator == '+') {
+        let result = addition(num1, num2);
+        return result;
+    } else if (operator == '-') {
+        let result = subtraction(num1, num2);
+        return result;
+    } else if (operator == '*') {
+        let result = multiplication(num1, num2);
+        return result;
+    } else if (operator == '/') {
+        let result = division(num1, num2);
+        return result;
+    };
+};
+
 buttons.forEach(button => {
     button.addEventListener('click', function() {
-        console.log(`${button.id}`);
-    }
-)})
+        document.getElementById('results').innerHTML = `${button.id}`;
+        displayValue = `${button.id}`;
+        return displayValue;
+    })});
+
+document.getElementById('result').innerHTML = ''
+
+
