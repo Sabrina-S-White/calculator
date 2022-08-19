@@ -3,9 +3,14 @@ let subtract = document.getElementById('-');
 let multiple = document.getElementById('*');
 let divide = document.getElementById('/');
 
-const buttons = document.querySelectorAll('.btn');
+const numbers = document.querySelectorAll('.btn');
+const operators = document.querySelectorAll('.opr');
 
-let displayValue = ''
+
+
+let displayValue = '';
+let displayOperator = '';
+let displayValue2 = '';
 
 function addition(num1, num2) {
     if ((num1 == parseInt(num1)) && (num2 == parseInt(num2))) {
@@ -13,7 +18,7 @@ function addition(num1, num2) {
         return result;
     } 
 };
-
+document.getElementById('results').innerHTML = '';
 function subtraction(num1, num2) {
     let result = (num1 - num2);
     return result;
@@ -45,13 +50,21 @@ function operate(operator, num1, num2) {
     };
 };
 
-buttons.forEach(button => {
+numbers.forEach(button => {
     button.addEventListener('click', function() {
         document.getElementById('results').innerHTML = `${button.id}`;
         displayValue = `${button.id}`;
         return displayValue;
     })});
 
-document.getElementById('result').innerHTML = ''
+operators.forEach(button => {
+    button.addEventListener('click', function() {
+        document.getElementById('results').innerHTML = `${button.id}`;
+        displayOperator = `${button.id}`;
+        return displayOperator;
+    })
+});
+
+
 
 
