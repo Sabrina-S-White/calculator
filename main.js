@@ -10,11 +10,14 @@ const operators = document.querySelectorAll('.opr');
 const clearNum = document.querySelectorAll('.clr');
 const equal = document.querySelectorAll('.fnc');
 
-document.getElementById('results').innerHTML = '';
+document.getElementById('results1').innerHTML = '';
+document.getElementById('results2').innerHTML = '';
 
 let displayOperator = '';
 let x = 0;
+let y = 0;
 let array = Array();
+let array2 = Array();
 num0 = '';
 num1 = '';
 
@@ -53,19 +56,23 @@ function operate(displayOperator, num0, num1) {
 };
 
 //buttons
-
 numbers.forEach(button => {
-    button.addEventListener('click', function() {
-        document.getElementById('results').innerHTML = `${button.id}`;
+    if (displayOperator.length == '') {button.addEventListener('click', function () {
+        document.getElementById('results1').innerHTML = `${button.id}`;
         array[x] = `${button.id}`;
         x++;
-        num0 = parseInt(array[0]);
-        num1 = parseInt(array[1]);
-    })});
+        num0 += `${button.id}`;
+    })} else if (displayOperator.length != '') {button.addEventListener('click', function() {
+        document.getElementById('results1').innerHTML = `${button.id}`
+        array2[y] = `${button.id}`;
+        y++
+        num1 += `${button.id}`;
+    })}
+})
 
 operators.forEach(button => {
     button.addEventListener('click', function() {
-        document.getElementById('results').innerHTML = `${button.id}`;
+        document.getElementById('results2').innerHTML = `${button.id}`;
         displayOperator = `${button.id}`;
         })});
 
