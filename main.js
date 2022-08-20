@@ -1,3 +1,5 @@
+//declarations
+
 let add = document.getElementById('+');
 let subtract = document.getElementById('-');
 let multiple = document.getElementById('*');
@@ -5,66 +7,74 @@ let divide = document.getElementById('/');
 
 const numbers = document.querySelectorAll('.btn');
 const operators = document.querySelectorAll('.opr');
+const clearNum = document.querySelectorAll('.clr');
+const equal = document.querySelectorAll('.fnc');
 
+document.getElementById('results').innerHTML = '';
 
-
-let displayValue = '';
 let displayOperator = '';
-let displayValue2 = '';
+let x = 0;
+let array = Array();
+num0 = '';
+num1 = '';
 
-function addition(num1, num2) {
-    if ((num1 == parseInt(num1)) && (num2 == parseInt(num2))) {
-        let result = (num1 + num2); 
-        return result;
+//functions
+
+function addition(num0, num1) {
+        let result = (num0 + num1); 
+        document.getElementById('results').innerHTML = result;
+};
+
+function subtraction(num0, num1) {
+    let result = (num0 - num1);
+    return result;
+};
+
+function multiplication(num0, num1) {
+    let result = (num0 * num1);
+    return result;
+};
+
+function division(num0, num1) {
+    let result = (num0 / num1);
+    return result;
+};
+
+function operate(displayOperator, num0, num1) {
+    if (displayOperator == '+') {
+        addition(num0, num1);
     } 
 };
-document.getElementById('results').innerHTML = '';
-function subtraction(num1, num2) {
-    let result = (num1 - num2);
-    return result;
-};
 
-function multiplication(num1, num2) {
-    let result = (num1 * num2);
-    return result;
-};
-
-function division(num1, num2) {
-    let result = (num1 / num2);
-    return result;
-};
-
-function operate(operator, num1, num2) {
-    if (operator == '+') {
-        let result = addition(num1, num2);
-        return result;
-    } else if (operator == '-') {
-        let result = subtraction(num1, num2);
-        return result;
-    } else if (operator == '*') {
-        let result = multiplication(num1, num2);
-        return result;
-    } else if (operator == '/') {
-        let result = division(num1, num2);
-        return result;
-    };
-};
+//buttons
 
 numbers.forEach(button => {
     button.addEventListener('click', function() {
         document.getElementById('results').innerHTML = `${button.id}`;
-        displayValue = `${button.id}`;
-        return displayValue;
+        array[x] = `${button.id}`;
+        x++;
+        num0 = parseInt(array[0]);
+        num1 = parseInt(array[1]);
     })});
 
 operators.forEach(button => {
     button.addEventListener('click', function() {
         document.getElementById('results').innerHTML = `${button.id}`;
         displayOperator = `${button.id}`;
-        return displayOperator;
-    })
-});
+        })});
+
+clearNum.forEach(button => {
+    button.addEventListener('click', function() {
+        document.getElementById('results').innerHTML = "";
+        displayOperator = '';
+        num0 = '';
+        num1 = '';
+        array.splice(0, array.length);
+        x = 0;
+    })});
 
 
-
-
+equal.forEach(button => {
+    button.addEventListener('click', function() {
+        operate(displayOperator, num0, num1);
+    })});
