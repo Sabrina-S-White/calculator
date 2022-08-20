@@ -5,19 +5,19 @@
 }
 
 #primaryDiv {
-    width: 300px;
-    justify-content: center;
-    align-items: center;
-    display: flex;
+    display: grid;
+    grid-template-columns: repeat(4, 100px);
+    grid-template-rows: minmax(100px, auto) repeat(5, 80px);
+    gap: 2px;
     flex-direction: column;
     background-color: lightgray;
     padding: 15px;
 }
 
 #results {
-    height: 45px;
+    height: 100px;
     background-color: aliceblue;
-    width: 250px;
+    width: 400px;
     margin: 5px;
     font-size:xx-large;
     font-weight: bold;
@@ -25,14 +25,5 @@
     align-items: center;
 }
 
-#buttons {
-    display: grid;
-    width: 250px;
-    grid-template-columns: auto auto auto;
-}
 
-body div h1 {
-    font-family: cursive;
-    margin:0px;
-    font-weight:700;
-}
+
