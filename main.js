@@ -21,29 +21,35 @@ num1 = '';
 //functions
 
 function addition(num0, num1) {
-        let result = (num0 + num1); 
+        let result = (num0 + num1).toFixed(2); 
         document.getElementById('results').innerHTML = result;
 };
 
 function subtraction(num0, num1) {
-    let result = (num0 - num1);
-    return result;
+    let result = (num0 - num1).toFixed(2);
+    document.getElementById('results').innerHTML = result;
 };
 
 function multiplication(num0, num1) {
-    let result = (num0 * num1);
-    return result;
+    let result = (num0 * num1).toFixed(2);
+    document.getElementById('results').innerHTML = result;
 };
 
 function division(num0, num1) {
-    let result = (num0 / num1);
-    return result;
+    let result = (num0 / num1).toFixed(2);
+    document.getElementById('results').innerHTML = result;
 };
 
 function operate(displayOperator, num0, num1) {
     if (displayOperator == '+') {
         addition(num0, num1);
-    } 
+    } else if (displayOperator == '-') {
+        subtraction(num0, num1);
+    } else if (displayOperator == '*') {
+        multiplication(num0, num1);
+    } else if (displayOperator == '/') {
+        division(num0, num1);
+    }
 };
 
 //buttons
