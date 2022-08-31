@@ -57,6 +57,10 @@ function operate(displayOperator, num0, num1) {
 
 //buttons
 numbers.forEach(button => {
+    // try to put in a if statement that tests if displayOp has any of the operators using or. 
+    // if so, run logic and reset the arrays and all that
+    // else if displayOp == 'none', run existing function.
+
     if (displayOperator === 'none') {button.addEventListener('click', function () {
         array[x] = `${button.id}`;
         document.getElementById('results1').innerHTML = array.join('');
