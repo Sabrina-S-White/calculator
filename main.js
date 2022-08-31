@@ -13,13 +13,13 @@ const equal = document.querySelectorAll('.fnc');
 document.getElementById('results1').innerHTML = '';
 document.getElementById('results2').innerHTML = '';
 
-let displayOperator = '';
+let displayOperator = 'none';
+let equationOperator = 'none';
 let x = 0;
-let y = 0;
-let array = Array();
-let array2 = Array();
-num0 = '';
-num1 = '';
+let array = ['0'];
+num0 = 0;
+num1 = 0;
+
 
 //functions
 
@@ -57,18 +57,19 @@ function operate(displayOperator, num0, num1) {
 
 //buttons
 numbers.forEach(button => {
-    if (displayOperator.length == '') {button.addEventListener('click', function () {
-        document.getElementById('results1').innerHTML = `${button.id}`;
+    if (displayOperator === 'none') {button.addEventListener('click', function () {
         array[x] = `${button.id}`;
+        document.getElementById('results1').innerHTML = array.join('');
         x++;
-        num0 += `${button.id}`;
-    })} else if (displayOperator.length != '') {button.addEventListener('click', function() {
-        document.getElementById('results1').innerHTML = `${button.id}`
-        array2[y] = `${button.id}`;
-        y++
-        num1 += `${button.id}`;
-    })}
-})
+        num0 = parseInt(array.join(''))});
+    } else if (displayOperator === '+' || displayOperator === '-') {button.addEventListener('click', function () {
+        num1 = num0;
+        equationOperator = displayOperator;
+        array = ['0'];
+        displayOperator = 'none';
+        x = 0;
+        array[x] = `${button.id}`;
+})}});
 
 operators.forEach(button => {
     button.addEventListener('click', function() {
