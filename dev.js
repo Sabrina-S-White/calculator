@@ -1,14 +1,11 @@
 //declarations
 
-let add = document.getElementById('+');
-let subtract = document.getElementById('-');
-let multiple = document.getElementById('*');
-let divide = document.getElementById('/');
-
 const numbers = document.querySelectorAll('.btn');
 const operators = document.querySelectorAll('.opr');
 const clearNum = document.querySelectorAll('.clr');
 const equal = document.querySelectorAll('.fnc');
+const plusMin = document.querySelectorAll('.plusmin');
+const dec = document.querySelectorAll('.dec');
 
 document.getElementById('results1').innerHTML = '';
 document.getElementById('results2').innerHTML = '';
@@ -21,6 +18,8 @@ let num1 = 0;
 let num2 = 0;
 let results1 = '';
 let results2 = '';
+let holder = 0;
+let y = 0;
 
 //functions
 
@@ -64,10 +63,19 @@ if (equationOperator == '+') {
 
 numbers.forEach(button => {
     button.addEventListener('click', function() {
+        if (y === 0) {
+            document.getElementById('results1').innerHTML = '';
+            array[x] = `${button.id}`;
+            document.getElementById('results2').innerHTML = array.join('');
+            x++;
+            y++;
+            num1 = Number(array.join(''))
+        } else if (y > 0) {
         array[x] = `${button.id}`;
         document.getElementById('results2').innerHTML = array.join('');
         x++;
-        num1 = parseInt(array.join(''))});
+        y++
+        num1 = Number(array.join(''))}});
     });
 
 operators.forEach(button => {
@@ -88,6 +96,7 @@ clearNum.forEach(button => {
     displayOperator = 'none';
     equationOperator = 'none';
     x = 0;
+    y = 0;
     array = ['0'];
     num1 = 0;
     num2 = 0;
@@ -99,7 +108,43 @@ clearNum.forEach(button => {
 
 equal.forEach(button => {
     button.addEventListener('click', function() {
-        document.getElementById('results1').innerHTML = (num2 + ' ' + equationOperator + ' ' + num1 + ' ' + '=')
-        document.getElementById('results2').innerHTML = operate(equationOperator, num2, num1);
+        let fin = operate(equationOperator, num2, num1)
+        document.getElementById('results1').innerHTML = (num2 + ' ' + equationOperator + ' ' + num1 + ' ' + '=' + ' ' + fin);
+        holder = fin;
+        displayOperator = 'none';
+        equationOperator = 'none';
+        x = 0;
+        y = 0;
+        array = ['0'];
+        num1 = 0;
+        num2 = 0;
+        results1 = '';
+        results2 = '';
+        document.getElementById('results2').innerHTML = ' ';
     }
     )});
+
+    plusMin.forEach(button => {
+        button.addEventListener('click', function() {
+            
+            if (num1 > 0) {
+                num1 = (-num1);
+                document.getElementById('results2').innerHTML = num1;
+            } else if (num1 < 0) {
+                num1 = (-(num1));
+                document.getElementById('results2').innerHTML = num1;
+            } else return;
+        })
+    });
+
+    dec.forEach(button => {
+        button.addEventListener('click', function() {
+        array[x] = '.';
+        document.getElementById('results2').innerHTML = array.join('');
+        x++;
+        y++;
+        num1 = Number(array.join('')); 
+        })
+        
+    })
+    
